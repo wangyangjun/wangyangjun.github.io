@@ -1,18 +1,30 @@
 <html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
 	<title>Yangjun's Blog</title>
-	<body>
-		<h3>Hello, welcome to Yangjun's blog!</h3>
-		<section class="ng-container" ui-view></section>
-		<div ng-app="">
-		 	<p>Name: <input type="text" ng-model="name"></p>
-		 	<p ng-bind="name"></p>
+	<body >
+		<div scroll>
+			<div ng-include="'views/header.html'"></div>
+			<section class="ng-container" ui-view></section>
 		</div>
 	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-resource.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
 	<script type="text/javascript" src="js/lib/ui-bootstrap-tpls-0.13.4.min.js"></script>
 	<script type="text/javascript" src="js/lib/angular-ui-router.min.js"></script>
+
 	<script type="text/javascript" src="js/config.js"></script>
 	<script type="text/javascript" src="js/application.js"></script>
+	<script type="text/javascript" src="js/controllers/header.controller.js"></script>
+	<script type="text/javascript" src="js/controllers/blog.controller.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"/>	
+
 </html>

@@ -1,0 +1,93 @@
+
+html{
+	height:100%;
+	font-size:100%;
+	-webkit-text-size-adjust:100%;
+	-ms-text-size-adjust:100%;
+	-webkit-font-smoothing:antialiased;
+	font-family:'Open Sans',Arial,sans-serif
+}
+
+.navbar-scroll {
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
+    background-color: white;
+    color: #515151!important;
+}
+
+.header-blog .nav li a, .header-blog .navbar-brand{
+    color: #515151 ;
+}
+
+.header-blog .header-wrapper {
+    margin-bottom: 0;
+    clear: both;
+    height: 70px;
+    background: url(../images/header.png) 0 0 repeat-x;
+}
+
+.navbar-brand, .navbar-nav li a {
+    line-height: 70px;
+    height: 70px;
+    padding-top: 0;
+    font-size: 1.2rem;
+    transition: color .5s;
+    color: #fff;
+}
+
+.navbar-scroll .navbar-brand, .navbar-scroll .navbar-nav li a {
+    color: #515151;
+    -webkit-transition: background-color .5s;
+    transition: background-color .5s;
+}
+
+.section-next-to-header{
+	padding-top: 70px;
+}
+
+h2 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: -0.15rem;
+}
+
+
+h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: -0.15rem;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+
+p {
+    font-size: 2rem;
+}
+header .navbar-nav li> a:hover, header li> a:focus{
+	background-color: #999;
+}
+
+.home-section{
+	color: white;
+}
+
+.home-section .intro-text{
+	color: #FFF;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    position: absolute;
+    margin: 0;
+}
+
+.storm .features{
+    color: #317eac;
+}
