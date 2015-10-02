@@ -35,7 +35,16 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 		}).
 		state('blog', {
 			url: '/blog',
+			abstract: true,
 			templateUrl: 'views/blog.html'
+		})
+		.state('blog.home', {
+		    url: "",
+		    templateUrl: "views/blog-home.html"
+		})
+		.state('blog.page1', {
+		    url: "/page1",
+		    templateUrl: "views/blog_1.html"
 		});
 	}
 ]);

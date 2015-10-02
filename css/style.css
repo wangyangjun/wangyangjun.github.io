@@ -11,7 +11,7 @@ html{
 .navbar-scroll {
     -webkit-transition: background-color 1s;
     transition: background-color 1s;
-    background-color: white;
+
     color: #515151!important;
 }
 
@@ -19,7 +19,7 @@ html{
     color: #515151 ;
 }
 
-.header-blog .header-wrapper {
+.header-blog .header-wrapper, .navbar-scroll {
     margin-bottom: 0;
     clear: both;
     height: 70px;
