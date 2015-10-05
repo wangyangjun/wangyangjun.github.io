@@ -2,15 +2,15 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/flaticon.css">
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	</head>
 	<title>Yangjun's Blog</title>
-	<body >
-		<div scroll>
-			<div ng-include="'views/header.html'"></div>
-			<section class="ng-container" ui-view></section>
-		</div>
+	<body scroll>
+		<div ng-include="'views/header.html'"></div>
+		<section class="ng-container" ui-view></section>
+		<div ng-include="'views/footer.html'"></div>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
@@ -25,6 +25,6 @@
 	<script type="text/javascript" src="js/controllers/blog.controller.js"></script>
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"/>	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	
 
 </html>
