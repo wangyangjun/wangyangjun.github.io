@@ -114,7 +114,7 @@ header .icon-bar{
 footer.footer-bottom{
     color: white;
     background-color: #676767;
-    padding: 45px 0;
+    padding: 10px 0;
 }
 
 .footer-bottom > div{
@@ -135,12 +135,35 @@ footer .social a{
     text-decoration: none;
 }
 
-footer .glyph-icon:before{
-    font-size: 30px;
-}
-
 footer .glyph-icon:hover{
     font-size: 30px;
-    color: #75D1FF;
+    color: #000;
 }
+
+.nomargin{
+    margin: 0 !important;
+}
+
+.nomargin:before{
+        margin: 0 !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.statement {
+    max-width: 600px;
+}
+@media (min-width: 768px){
+    .statement {
+        padding: 25px;
+    }
+}
+@media (min-width: 1200px){
+    .statement {
+        padding: 35px;
+    }
+}
+
 
