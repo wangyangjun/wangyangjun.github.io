@@ -69,7 +69,7 @@ angular.module('app').directive("scroll", function ($window) {
     	scope.lastPageYOffset = 0;
         angular.element($window).bind("scroll", function(a, b) {
         	
-        	if(this.pageYOffset > scope.lastPageYOffset) {
+        	if(this.pageYOffset > scope.lastPageYOffset && this.pageYOffset > 50) {
         		scope.header_nav_class = ""
         		scope.head_class = "hidden"
         	} else {
