@@ -33,6 +33,10 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 			url: '/',
 			templateUrl: 'views/home.html'
 		}).
+		state('hobby', {
+			url: '/hobby',
+			templateUrl: 'views/hobby.html'
+		}).
 		state('blog', {
 			url: '/blog',
 			abstract: true,
@@ -49,25 +53,33 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 	}
 ]);
 
-angular.module('app').run(['$rootScope', function($rootScope){
-	var authPreventer = $rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
-		var re = new RegExp("#!\/blog");
-		if(re.test(newUrl)){
-			$rootScope.head_class = "header-blog"
-		} else {
-			$rootScope.head_class = ""
-		}
-	});
-}]);
+// angular.module('app').run(['$rootScope', function($rootScope){
+// 	var authPreventer = $rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl){
+// 		var re = new RegExp("#!\/blog");
+// 		if(re.test(newUrl)){
+// 			$rootScope.head_class = "header-blog"
+// 		} else {
+// 			$rootScope.head_class = ""
+// 		}
+// 	});
+// }]);
 
 angular.module('app').directive("scroll", function ($window) {
     return function(scope, element, attrs) {
-        angular.element($window).bind("scroll", function() {
-			if (this.pageYOffset >= 50) {
-				scope.header_nav_class = "navbar-scroll"
-			} else {
-				scope.header_nav_class = ""
-			}
+    	scope.lastPageYOffset = 0;
+        angular.element($window).bind("scroll", function(a, b) {
+        	
+        	if(this.pageYOffset > scope.lastPageYOffset) {
+        		scope.header_nav_class = ""
+        		scope.head_class = "hidden"
+        	} else {
+        		scope.head_class = ""
+        		scope.header_nav_class = "navbar-scroll"
+        		if (this.pageYOffset < 50) {
+        			scope.header_nav_class = ""
+        		}
+        	}
+			scope.lastPageYOffset = this.pageYOffset;
             scope.$apply();
         });
     };
