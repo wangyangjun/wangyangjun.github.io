@@ -81,7 +81,7 @@ header .navbar-toggle{
 	color: white;
 }
 
-.home-section .intro-text{
+.home-section .intro-text {
 	color: #FFF;
     top: 75%;
     left: 50%;
@@ -92,8 +92,8 @@ header .navbar-toggle{
     margin: 0;
 }
 
-.storm .features{
-    color: #317eac;
+.main-section {
+    padding-top: 30px;
 }
 
 #other-works{
@@ -207,11 +207,11 @@ ul.list-inline{
     text-align: center;
 }
 
-.education section {
+.education section, .work-experience section {
     margin-bottom: 30px;
 }
 
-.education h4 > span {
+.education h4 > span, .education li > span {
     font-size: 16px;
     font-style: italic;
 }
@@ -230,4 +230,34 @@ ul.list-inline{
 .school-year {
     float: right;
     line-height: 40px;
+}
+
+.work-experience {
+    font-size: 16px;
+}
+
+.work-experience hr {
+    border-top: 1px solid #aaa;
+    margin-bottom: 5px;
+}
+
+.job-title {
+    float: left;
+}
+
+.company-logo {
+    height: 54px;
+    float: right;
+    display: block;
+    padding: 20px 0 10px 0;
+}
+.company-logo img {
+    height: 100%;
+}
+.comapny-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+.work-year {
+    float: right;
 }
