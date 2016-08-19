@@ -6,10 +6,37 @@ html{
 	-ms-text-size-adjust:100%;
 	-webkit-font-smoothing:antialiased;
 	font-family:'Open Sans',Arial,sans-serif
+    font-size: 16px;
+}
+
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h2, h3 {
+    margin-top: 1.2rem;
+    margin-bottom: 0.66rem;
+}
+
+h4 {
+    font-size: 1.15rem;
 }
 
 hr{
     margin-top: 5px;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
 }
 
 hr.small {
@@ -92,13 +119,9 @@ header .navbar-toggle{
 }
 
 .main-section {
-    padding-top: 30px;
+    padding-top: 2rem;
 }
 
-#other-works{
-    background-color: #169FCC !important;
-    height: 550px;
-}
 
 #other-hobbies{
     background-color: #169FCC !important;
@@ -206,33 +229,35 @@ ul.list-inline{
     text-align: center;
 }
 
-.education section, .work-experience section {
-    margin-bottom: 30px;
+.main-section section {
+    margin-bottom: 2rem;
 }
 
 .education h4 > span, .education li > span {
-    font-size: 16px;
+    font-size: 1rem;
     font-style: italic;
 }
 
 .school-logo {
-    width: 50px;
-    padding-top: 10px;
+    width: 2.7rem;
+    padding-top: 0.66rem;
     float: left;
 }
 
 .school-name {
     float: left;
-    margin-left: 20px;
+    margin-left: 1.2rem;
 }
 
 .school-year {
     float: right;
-    line-height: 40px;
+    line-height: 1.8rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.66rem;
 }
 
 .work-experience {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .work-experience hr {
@@ -245,23 +270,41 @@ ul.list-inline{
 }
 
 .company-logo {
-    height: 54px;
+    height: 3.3rem;
     float: right;
     display: block;
-    padding: 20px 0 10px 0;
+    padding: 1.2rem 0 0.66rem 0;
 }
 .company-logo img {
     height: 100%;
 }
 .comapny-name {
-    font-size: 18px;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 .work-year {
     float: right;
 }
 
+.other-works {
+    color: white;
+    background-color: #169FCC !important;
+}
+
+.other-works a {
+    color: inherit;
+}
+
+.other-works hr {
+    border-top: 1px solid #ababab;
+    margin-bottom: 5px;
+}
+
 @media (max-width: 768px){
+    html{
+        font-size: 12px;
+    }
+
     .header-wrapper {
         color: white !important;
         background-color: rgba(22,159,204, 0.85) !important;
