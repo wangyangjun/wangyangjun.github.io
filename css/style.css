@@ -33,9 +33,20 @@ hr.small {
 .header-blog .header-wrapper, .navbar-scroll {
     margin-bottom: 0;
     clear: both;
-    height: 60px;
     background-color: rgba(231,231,231,.9);
 }
+
+@media (max-width: 768px){
+    .header-wrapper {
+        color: #e7e7e7 !important;
+        background-color: rgba(22,159,204, 0.85) !important;
+    }
+
+    .header-wrapper a, .header-wapper span {
+        color: #e7e7e7 !important;
+    }
+}
+
 
 .navbar-brand, .navbar-nav li a {
     line-height: 60px;
