@@ -36,18 +36,6 @@ hr.small {
     background-color: rgba(231,231,231,.9);
 }
 
-@media (max-width: 768px){
-    .header-wrapper {
-        color: #e7e7e7 !important;
-        background-color: rgba(22,159,204, 0.85) !important;
-    }
-
-    .header-wrapper a, .header-wapper span {
-        color: #e7e7e7 !important;
-    }
-}
-
-
 .navbar-brand, .navbar-nav li a {
     line-height: 60px;
     height: 60px;
@@ -271,4 +259,24 @@ ul.list-inline{
 }
 .work-year {
     float: right;
+}
+
+@media (max-width: 768px){
+    .header-wrapper {
+        color: white !important;
+        background-color: rgba(22,159,204, 0.85) !important;
+    }
+
+    .header-wrapper a, .header-wapper span {
+        color: white !important;
+    }
+
+    .navbar-toggle .icon-bar {
+        background-color: white;
+    }
+
+    .navbar-brand, .navbar-nav li a {
+        line-height: 70px;
+        height: 70px;
+    }
 }

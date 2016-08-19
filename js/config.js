@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'wangyangjun.github.io'; //
-	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate',   'ui.bootstrap','ui.router', 'ui.bootstrap.modal'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate',  'ui.bootstrap', 'ui.router', 'ui.bootstrap.modal'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
