@@ -46,9 +46,11 @@ angular.module('app').config(['$stateProvider', '$urlRouterProvider',
 		    url: "",
 		    templateUrl: "views/blog-home.html"
 		})
-		.state('blog.page1', {
-		    url: "/page1",
-		    templateUrl: "views/blog_1.html"
+		.state('blog.subpage', {
+		    url: "/{blogId}",
+		    templateUrl: function ($stateParams){
+		    	return 'mds/' + $stateParams.blogId + '.md';
+		    }
 		});
 	}
 ]);
