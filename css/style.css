@@ -9,6 +9,9 @@ html{
     font-size: 16px;
 }
 
+body {
+    font-size: 1rem;
+}
 
 h2 {
     font-size: 1.8rem;
@@ -218,12 +221,10 @@ ul.list-inline{
     }
 }
 
-@media (min-width: 1200px){
-    .statement {
-        padding: 20px;
-    }
+.slide-img {
+    width: 100%;
+    margin: 10px 0;
 }
-
 
 .caption, .intro-header .page-heading, .intro-header .site-heading, footer .copyright {
     text-align: center;
@@ -321,5 +322,11 @@ ul.list-inline{
     .navbar-brand, .navbar-nav li a {
         line-height: 70px;
         height: 70px;
+    }
+}
+
+@media (min-width: 1200px){
+    .statement {
+        padding: 20px;
     }
 }
