@@ -11,6 +11,33 @@
         </div>
     </div>
 </header>
+<marked>
+  # Markdown directive
+  *It works!*  
+  ## Markdown
+
+  **Code blocks**
+
+      This is <b>bold</b>
+
+  **Ampersands**
+
+  Star Trek & Star Wars
+</marked>
+<script type="text/ng-template" id="tpl.md">
+  ## Markdown
+
+  **Code blocks**
+
+      This is <b>bold</b>
+
+  **Ampersands**
+
+  Star Trek & Star Wars
+</script>
+
+<div marked src="'tpl.md'"></div>
+<div marked src="'views/bolg1.md'" />
 <section data-ng-controller="BlogController" class="storm section-next-to-header" style="height:550px;">
 	<div class="col-lg-7 text-center col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 features">
 		<section ui-view></section>
