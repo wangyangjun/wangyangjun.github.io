@@ -1,11 +1,63 @@
- # Markdown directive
-  *It works!*  
-  ## Markdown
+# blog 1
 
-  **Code blocks**
+Content
 
-      This is <b>**bold**</b>
-  **bold**  
-  **Ampersands**
+<!--
+  Note
+-->
 
-  Star Trek & Star Wars
+----
+
+Next content
+
+Content
+
+<!--
+  Note
+-->
+
+----
+
+Next content
+Content
+
+<!--
+  Note
+-->
+
+----
+
+Next content
+____
+
+## String of small content
+
+Content
+
+----
+
+# New page?
+
+# Title2
+
+Content
+
+<!--
+  Note
+-->
+
+----
+
+Next content
+
+____
+
+## Algorithm
+
+Content
+
+----
+
+## Message
+
+Heke

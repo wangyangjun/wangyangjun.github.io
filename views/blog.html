@@ -12,26 +12,27 @@
     </div>
 </header>
 
-<section data-ng-controller="BlogController" class="storm section-next-to-header" style="height:550px;">
+<section  data-ng-controller="BlogController" class="storm section-next-to-header">
 	<div class="col-lg-8 col-lg-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 features">
 		<section marked ui-view></section>
 	</div>
-	<div class="col-lg-3 col-sm-3">
+	<div class="col-lg-3 col-sm-3" set-class-when-at-top="fix-to-top100 right0">
+		<div id="post-structure" class="post-toc">
+			<ul class="post-menu" style="list-style-type:none;">
+				<li du-scrollspy du-smooth-scroll="{{element.id}}" ng-repeat="element in elementsWithId" ng-click="updateHash(element.id)">
+					<a class="link">
+						<span>{{$index + 1}}.</span>
+						<span>{{element.text}}</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<p>
 			<a ui-sref=".home" class="btn btn-danger">Home</a>
 		</p>
 		<p>
 			<a ui-sref=".subpage({blogId: 'blog1'})" class="btn btn-primary">Blog1</a>
+			<a ui-sref=".subpage({blogId: 'blog2'})" class="btn btn-primary">Blog2</a>
 		</p>
-		<p>
-			<a>Weekly meeting -- 23/09/2015</a>
-		</p>
-		<p>
-			<a>Weekly meeting -- 23/09/2015</a>
-		</p>
-		<p>
-			<a>Weekly meeting -- 23/09/2015</a>
-		</p>
-
 	</div>
 </section>

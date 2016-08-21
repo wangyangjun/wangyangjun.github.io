@@ -11,6 +11,7 @@ html{
 
 body {
     font-size: 1rem;
+    position: relative;
 }
 
 h2 {
@@ -47,6 +48,19 @@ hr.small {
     margin: 15px auto;
     border-width: 4px;
     border-color: #fff;
+}
+
+a.link {
+    cursor: pointer;
+}
+
+.fix-to-top100 {
+    position: fixed;
+    top: 100;
+}
+
+.right0 {
+    right: 0;
 }
 
 .navbar-scroll {
@@ -300,6 +314,30 @@ ul.list-inline{
     border-top: 1px solid #ababab;
     margin-bottom: 5px;
 }
+
+
+.post-toc .post-menu .active > a:hover {
+    color: firebrick;
+}
+.post-toc .post-menu .active > a {
+    color: firebrick;
+    font-weight: 500;
+}
+
+.post-toc ul a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+
+.post-toc ul li:hover {
+    background-color: #ddd;
+}
+
+.post-toc ul a {
+    color: #343434;
+    line-height: 1.7rem;
+}
+
 
 @media (max-width: 768px){
     html{
