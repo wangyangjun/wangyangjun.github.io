@@ -365,6 +365,9 @@ ul.list-inline{
         line-height: 70px;
         height: 70px;
     }
+    img {
+        max-width: 100%;
+    }
 }
 
 @media (min-width: 1200px){
