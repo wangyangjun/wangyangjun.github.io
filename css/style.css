@@ -324,6 +324,10 @@ ul.list-inline{
     font-weight: 500;
 }
 
+.post-toc ul {
+    padding-left: 0px;
+}
+
 .post-toc ul a:hover {
     color: #23527c;
     text-decoration: none;

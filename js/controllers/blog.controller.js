@@ -5,7 +5,8 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 
 		$scope.$on('$viewContentLoaded', function(){
 			var elements = [];
-			elements = $($element.find("[marked]")[0]).find("[id]");
+			// first one is title
+			elements = $($element.find("[marked]")[0]).find("[id]").slice(1);
 			$scope.elementsWithId = elements.map((i, e) => { return {'id': e.id, 'text': e.innerText}});
 		});
 	}
