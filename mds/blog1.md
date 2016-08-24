@@ -1,5 +1,3 @@
-
-
 ## StreamBench: Stream Processing Systems Benchmark
 ---
 ### Introduction

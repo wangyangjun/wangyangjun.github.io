@@ -3,6 +3,8 @@
 angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$element',
 	function($scope, $rootScope, $element) {
 
+		// var reader = new FileReader();
+		// reader.readAsText("../mds/blog1.md");
 		$scope.$on('$viewContentLoaded', function(){
 			var elements = [];
 			// first one is title
