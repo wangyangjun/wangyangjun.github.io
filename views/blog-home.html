@@ -1,3 +1,7 @@
-<h3 style="margin-top:80px;">
-	Blog home page
-</h3>
+<div>
+	<div ng-repeat="blog in blogs">
+		<a ui-sref="blog.subpage({blogId: blog.blogId})"><h3>{{blog.title}}</h3></a>
+		<hr/>
+		<span>{{blog.createTime}}</span>
+	</div>
+</div>

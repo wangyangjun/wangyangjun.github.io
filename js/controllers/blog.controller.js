@@ -1,10 +1,18 @@
 'use strict';
 
-angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$element',
-	function($scope, $rootScope, $element) {
+angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$element', '$state',
+	function($scope, $rootScope, $element, $state) {
+		
+		$scope.state = $state.current; 
+		$.get('blogs.json', function(blogs) {
+        	$scope.blogs = blogs;
+	    });
 
-		// var reader = new FileReader();
-		// reader.readAsText("../mds/blog1.md");
+
+	    $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
+	    	$scope.state = toState;
+	 	});
+
 		$scope.$on('$viewContentLoaded', function(){
 			var elements = [];
 			// first one is title
