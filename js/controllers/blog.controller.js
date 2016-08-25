@@ -3,12 +3,24 @@
 angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$element', '$state',
 	function($scope, $rootScope, $element, $state) {
 		
-
-		$scope.init = function () {
+		$scope.updateState = function(state) {
 			$scope.blogHome = false;
-			if ($state.current.name === 'blog.home') {
+			if (state.name === 'blog.home') {
 				$scope.blogHome = true;
 			}
+		}
+
+		$scope.setDisqusConfig = function() {
+			$scope.disqusConfig = {
+			    disqus_shortname: 'wangyangjun',
+			    disqus_identifier: window.location.hash,
+			    disqus_url: window.location.href
+			};
+		}
+		
+		$scope.init = function () {
+			$scope.updateState($state.current);
+			$scope.setDisqusConfig();
 
 		    $.get('blogs.json', function(blogs) {
 	        	$scope.blogs = blogs;
@@ -17,12 +29,13 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 		    });
 		};
 
-	    $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
-	    	$scope.blogHome = false;
-			if (toState.name === 'blog.home') {
-				$scope.blogHome = true;
-			}
+	    $scope.$on('$stateChangeStart', function(event, toState, toParams){
+	    	$scope.updateState(toState);
 	 	});
+
+	    $scope.$on('$locationChangeSuccess', function(newUrl, oldUrl){ 
+			$scope.setDisqusConfig();
+	    });
 
 		$scope.$on('$viewContentLoaded', function(){
 			var elements = [];

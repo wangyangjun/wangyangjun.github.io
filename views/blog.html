@@ -16,6 +16,7 @@
 	<div class="col-lg-8 col-lg-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 features">
 		<section ng-show="blogHome" ui-view></section>
 		<section ng-hide="blogHome" marked ui-view></section>
+		<dir-disqus config="disqusConfig"></dir-disqus>
 	</div>
 	<div ng-hide="blogHome"
 		class="col-lg-3 col-sm-3 hidden-xs" set-class-when-at-top="fix-to-top100 right0">
