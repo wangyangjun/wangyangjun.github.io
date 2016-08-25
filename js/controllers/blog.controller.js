@@ -6,6 +6,7 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 		$scope.state = $state.current; 
 		$.get('blogs.json', function(blogs) {
         	$scope.blogs = blogs;
+        	console.log("blogs loaded");
 	    });
 
 
