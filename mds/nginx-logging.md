@@ -44,7 +44,7 @@ server {
 The first line defines a log_format which verifies what information will be wrote into log file. Here we log **$request_body**, which means we could send the text that we want log in request body. From the [document](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body), we could know that  **$request_body**’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer. That is why we proxy_pass request of */logging* to another location */logsink* which does nothing and just returns 200 directly.
 
 Variables ***$year***, ***$month***, and ***$day*** extracted from time are used for log rotation.  
-Note: this varialbes require nginx has *http_perl_module* enalbed. Follow code could be used to check the modules of you nginx:
+Note: this varialbes require nginx has [*http_perl_module*](http://nginx.org/en/docs/http/ngx_http_perl_module.html) enalbed. Follow code could be used to check the modules of you nginx:
 ```
 nginx -V
 ```
