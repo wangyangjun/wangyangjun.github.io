@@ -12,6 +12,7 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 
 		    $.get('blogs.json', function(blogs) {
 	        	$scope.blogs = blogs;
+	        	$scope.$applyAsync();
 	        	console.log("blogs loaded");
 		    });
 		};
