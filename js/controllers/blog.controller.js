@@ -3,12 +3,13 @@
 angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$element', '$state',
 	function($scope, $rootScope, $element, $state) {
 		
-		$scope.state = $state.current; 
-		$.get('blogs.json', function(blogs) {
-        	$scope.blogs = blogs;
-        	console.log("blogs loaded");
-	    });
-
+		$scope.init = function () {
+			$scope.state = $state.current; 
+		    $.get('blogs.json', function(blogs) {
+	        	$scope.blogs = blogs;
+	        	console.log("blogs loaded");
+		    });
+		};
 
 	    $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
 	    	$scope.state = toState;
