@@ -1,7 +1,30 @@
-<div>
-	<div ng-repeat="blog in blogs">
-		<a ui-sref="blog.subpage({blogId: blog.blogId})"><h3>{{blog.title}}</h3></a>
-		<hr/>
-		<span>{{blog.createTime}}</span>
+<div class="blog-home">
+	<div class="blog-list">
+		<div class="blog-item" ng-repeat="blog in blogs">
+			<h3>
+				<a class="blog-title-link" ui-sref="blog.subpage({blogId: blog.blogId})">{{blog.title}}</a>
+			</h3>
+			<hr/>
+			<div class="blog-meta">
+				<span>{{blog.createTime}}</span>
+				<span class="post-category">
+	              &nbsp; | &nbsp;
+	              <span class="post-meta-item-text">tags:</span>
+	                <span ng-repeat="tag in blog.tags">
+	                  <a href="/categories/Flink/" itemprop="url" rel="index">
+	                    <span itemprop="name">{{tag}}</span>
+	                  </a>
+	                </span>
+	            </span>
+			</div>
+			<div class="blog-abstract">
+				<p>{{blog.abstract}}</p>
+			</div>
+			<div class="post-more-link">
+            <a ui-sref="blog.subpage({blogId: blog.blogId})" rel="contents">
+              Read more »
+            </a>
+          </div>
+		</div>
 	</div>
 </div>

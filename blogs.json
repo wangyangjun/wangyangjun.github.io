@@ -4,12 +4,12 @@
     "title": "Implement logging service with nginx",
     "createTime": "2016-08-25",
     "tags": ["nginx", "logging"],
-    "abstract": ""
+    "abstract": "In data processing, there are a lot of cases that need collect logs. This requires a log collection server with high concurrency and good performance. The API of the server could be very simple. But the requirement of the performance of the logging api is very high, because it is possible that there would be thousands or even millions of requests per second."
   }, {
   	"blogId": "stream-bench",
   	"title": "StreamBench: Stream Processing Systems Benchmark",
   	"createTime": "2016-08-23",
   	"tags": ["big data", "stream processing", "benchmark", "flink"],
-  	"abstract": ""
+  	"abstract": "Big Data has three dimensions volumn, velocity and variety. MapReduce and Spark solve volumn very well. The speed of data generation and the requirement of stream data processing increase dramatically. Currently there are several streaming processing systems trying to solve the velocity of Big Data and are widely adopted, such as Storm, Spark Streaming, IBM InfoSphere Streams, and Flink."
   }
 ]
