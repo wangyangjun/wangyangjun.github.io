@@ -43,10 +43,10 @@ server {
 ```  
 The first line defines a log_format which verifies what information will be wrote into log file. Here we log **$request_body**, which means we could send the text that we want log in request body. From the [document](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body), we could know that  **$request_body**’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer. That is why we proxy_pass request of */logging* to another location */logsink* which does nothing and just returns 200 directly.
 
-Variables ***$year***, ***$month***, and ***$day*** extracted from time are used for log rotation.  
-Note: this varialbes require nginx has [*http_perl_module*](http://nginx.org/en/docs/http/ngx_http_perl_module.html) enalbed. Follow code could be used to check the modules of you nginx:
-```
-nginx -V
-```
-If you see *--with-http_perl_module* and without *=dynamic*, then the rotation functionality should work.
+The file path can contain variables (0.7.6+), but such logs have some [constraints](http://nginx.org/en/docs/http/ngx_http_log_module.html)
+
+*   the user whose credentials are used by worker processes should have permissions to create files in a directory with such logs;
+*   buffered writes do not work;
+*   the file is opened and closed for each log write. However, since the descriptors of frequently used files can be stored in a cache, writing to the old file can continue during the time specified by the open_log_file_cache directive’s valid parameter
+*   during each log write the existence of the request’s root directory is checked, and if it does not exist the log is not created. It is thus a good idea to specify both root and access_log on the same level:
 

@@ -11,9 +11,15 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 		}
 
 		$scope.setDisqusConfig = function() {
+			let regExp = /\#([^#]+)[\#]?/;
+			let matches = regExp.exec(window.location);
+			let identifier = window.location.hash;
+			if(matches && matches.length > 1) {
+				identifier = matches[1];
+			}
 			$scope.disqusConfig = {
 			    disqus_shortname: 'wangyangjun',
-			    disqus_identifier: window.location.hash,
+			    disqus_identifier: identifier,
 			    disqus_url: window.location.href
 			};
 		}
