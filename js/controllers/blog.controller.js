@@ -11,9 +11,9 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 		}
 
 		$scope.setDisqusConfig = function() {
-			let regExp = /\#([^#]+)[\#]?/;
-			let matches = regExp.exec(window.location);
-			let identifier = window.location.hash;
+			var regExp = /\#([^#]+)[\#]?/;
+			var matches = regExp.exec(window.location);
+			var identifier = window.location.hash;
 			if(matches && matches.length > 1) {
 				identifier = matches[1];
 			}
