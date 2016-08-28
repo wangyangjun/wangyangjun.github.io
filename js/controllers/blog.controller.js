@@ -51,9 +51,9 @@ angular.module('app').controller('BlogController', ['$scope', '$rootScope', '$el
 
 		$scope.$on('$viewContentLoaded', function() {
 			var elements = $($element.find("[marked]")[0]).find("[id]")
-				.filter((i, e) => e.tagName !== 'H1' && e.tagName !== 'H2');
+				.filter(function(i, e){ return e.tagName !== 'H1' && e.tagName !== 'H2'});
 			$scope.contents = [];
-			_.forEach(elements, (e) => {
+			_.forEach(elements, function(e) {
 				switch (e.tagName) {
 					case 'H3':
 						$scope.contents.push({
