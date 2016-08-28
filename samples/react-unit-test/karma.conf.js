@@ -6,14 +6,7 @@ module.exports = function(config) {
         browsers: ['Chrome'], //run in Firefox or Chrome
         singleRun: true, //just run once by default
         frameworks: ['mocha', 'sinon-chai'], //use the mocha test framework 'sinon-chai'
-        client: {
-            chai: {
-                includeStack: true
-            }
-        },
-        files: [
-            'test.js'
-        ],
+        files: ['test.js'],
         preprocessors: {
             'test.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
         },
