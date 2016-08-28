@@ -11,5 +11,11 @@
   	"createTime": "2016-08-23",
   	"tags": ["big data", "stream processing", "benchmark", "flink"],
   	"abstract": "Big Data has three dimensions volumn, velocity and variety. MapReduce and Spark solve volumn very well. The speed of data generation and the requirement of stream data processing increase dramatically. Currently there are several streaming processing systems trying to solve the velocity of Big Data and are widely adopted, such as Storm, Spark Streaming, IBM InfoSphere Streams, and Flink."
+  }, {
+    "blogId": "react-unit-test",
+    "title": "Unit test for React.js App",
+    "createTime": "2016-08-27",
+    "tags": ["react", "unit test"],
+    "abstract": "A React App is consisted of components. A React component might contains multi sub-components. A well designed component should be reusable and stable. To achieve this, unit test is a necessity. In this article, I will introduce the method of unit test we used in our production development."
   }
 ]

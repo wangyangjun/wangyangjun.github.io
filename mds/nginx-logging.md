@@ -41,7 +41,7 @@ server {
 }
 
 ```  
-The first line defines a log_format which verifies what information will be wrote into log file. Here we log **$request_body**, which means we could send the text that we want log in request body. From the [document](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body), we could know that  **$request_body**’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer. That is why we proxy_pass request of */logging* to another location */logsink* which does nothing and just returns 200 directly.
+The first line defines a log_format which verifies what information will be wrote into log file. Here we log ```$request_body```, which means we could send the text that we want log in request body. From the [document](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body), we could know that  ```$request_body```’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer. That is why we proxy_pass request of */logging* to another location */logsink* which does nothing and just returns 200 directly.
 
 The file path can contain variables (0.7.6+), but such logs have some [constraints](http://nginx.org/en/docs/http/ngx_http_log_module.html)
 

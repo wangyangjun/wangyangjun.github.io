@@ -12,7 +12,7 @@
     </div>
 </header>
 
-<section  data-ng-controller="BlogController" data-ng-init="init()" class="storm section-next-to-header">
+<section  data-ng-controller="BlogController" data-ng-init="init()" class="blog-section section-next-to-header">
 	<div class="col-lg-8 col-lg-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 features">
 		<section ng-show="blogHome" ui-view></section>
 		<section ng-hide="blogHome" marked ui-view></section>
@@ -23,11 +23,19 @@
 		<div id="post-structure" class="post-toc">
 			<h4>Contents:</h4>
 			<ul class="post-menu" style="list-style-type:none;">
-				<li du-scrollspy du-smooth-scroll="{{element.id}}" ng-repeat="element in elementsWithId" ng-click="updateHash(element.id)">
-					<a class="link">
+				<li du-scrollspy du-smooth-scroll="{{content.id}}"  ng-repeat="content in contents" >
+					<a class="link" du-scrollspy du-smooth-scroll="{{content.id}}">
 						<span>{{$index + 1}}.</span>
-						<span>{{element.text}}</span>
+						<span>{{content.text}}</span>
 					</a>
+					<ul class="nav-child">
+						<li class="nav-item nav-level-3" ng-repeat="subcontent in content.subcontents">
+							<a class="link" du-scrollspy du-smooth-scroll="{{subcontent.id}}">
+								<span class="nav-number">{{$parent.$index+1}}.{{$index + 1}}.</span>
+								<span class="nav-text">{{subcontent.text}}</span>
+							</a>
+						</li>
+					</ul>
 				</li>
 			</ul>
 		</div>

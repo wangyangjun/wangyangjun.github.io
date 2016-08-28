@@ -12,6 +12,9 @@ body {
     font-size: 1rem;
     position: relative;
 }
+h1 {
+    font-size: 2.1rem;
+}
 h2 {
     font-size: 1.8rem;
 }
@@ -256,25 +259,39 @@ ul.list-inline {
     border-top: 1px solid #ababab;
     margin-bottom: 5px;
 }
-.post-toc .post-menu .active > a:hover {
+.blog-section h3 {
+    margin-top: 2rem;
+}
+.post-toc .post-menu a.active:hover {
     color: firebrick;
 }
-.post-toc .post-menu .active > a {
+.post-toc .post-menu a.active {
     color: firebrick;
     font-weight: 500;
+}
+
+.post-toc .post-menu .active .nav-child {
+    display: block;
+}
+.post-toc .post-menu .nav-child {
+    /*display: none;*/
+    margin-left: 20px;
+    list-style: none;
 }
 .post-toc ul {
     padding-left: 0px;
 }
 .post-toc ul a:hover {
-    color: #23527c;
+    color: #343434;
+    font-weight: 500;
     text-decoration: none;
 }
 .post-toc ul li:hover {
-    background-color: #ddd;
+    /*background-color: #ddd;*/
 }
 .post-toc ul a {
-    color: #343434;
+    width: 100%;
+    color: #676767;
     line-height: 1.7rem;
 }
 
