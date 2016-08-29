@@ -18,7 +18,8 @@ log_format  logging  '$time_iso8601||$remote_addr||$request_uri||$http_user_agen
 server {
     listen       8080;
     server_name  localhost;
-    
+    resolver     127.0.0.1;
+
     if ($time_iso8601 ~ "^(\d{4})-(\d{2})-(\d{2})) {
         set $year $1;
         set $month $2;
@@ -27,7 +28,6 @@ server {
 
     location = /logging {
         access_log logs/$year-$month-$day-engine-lng.log logging;
-        access_log logs/$host logging;
         proxy_pass http://localhost:8080/logsink;
         limit_except POST {
             deny all;
@@ -36,7 +36,7 @@ server {
 
     location = /logsink {
         add_header 'Access-Control-Allow-Origin' '*';
-        return 200;
+        return 204;
     }
 }
 

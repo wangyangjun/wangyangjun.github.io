@@ -1,14 +1,16 @@
 ## StreamBench: Stream Processing Systems Benchmark
 ---
 ### Introduction
-**Big Data** has three dimensions **volumn**, **velocity** and **variety**. MapReduce and Spark solve **volumn** very well. The speed of data generation and the requirement of stream data processing increase dramatically. Currently there are several streaming processing systems trying to solve the **velocity** of Big Data and are widely adopted, such as Storm, Spark Streaming, IBM InfoSphere Streams, and Flink.
+As stream processing systems are widely used in IT industry and there is no good benchmark tool for stream processing systems, we developed one to facilitate performance comparisons: Apache Storm, Apache Flink and Apache Spark Streaming. A key feature of the StreamBench framework is that it is extensible -- it supports easy definition of new workloads, in addition to making it easy to benchmark new stream processing systems.
 
-In this blog, we introduce StreamBench, a benchmark framework to facilitate performance comparisons of stream processing systems. A common API component and a core set of workloads are defined. We implement the common API and run benchmarks for three widely used open source stream processing systems: Apache Storm, Flink, and Spark Streaming. A key feature of the StreamBench framework is that it is extensible -- it supports easy definition of new workloads, in addition to making it easy to benchmark new stream processing systems.
-  
-  
-### Architecture
+Storm 0.10.0, and Flink 0.10.1 show sub-second latencies with Storm having the lowest 99th percentile latency. Flink achieves much better throughput than Storm. Spark streaming 1.5.1 supports high throughputs, but at a relatively higher latency. 
 
-The main component of StreamBench is a Java program consuming data from partitioned kafka topic and executing workloads on stream processing cluster. The architecture of StreamBench is shown as following figure. The core of the architecture is StreamBench API which contains several states of stream and a set of stream processing APIs that are very similar to Flink’s computational model. For example, API mapToPair maps a normal data stream to a keyed data stream, and API filter is a method with a parameter of boolean function and evaluates this boolean function for each element and retains those for which the function returns true.
+This project is my master [thesis](./master_thesis.pdf) project in Aalto university. The source code could be found in this [repository](https://github.com/wangyangjun/StreamBench).
+
+### Benchmark Design
+
+#### Architecture
+The main component of StreamBench is a Java program consuming data from partitioned kafka topic and executing workloads on stream processing cluster. The architecture of StreamBench is shown as following figure. The core of the architecture is StreamBench API which contains a set of common stream processing APIs. For example, API mapToPair maps a normal data stream to a keyed data stream, and API filter is a method with a parameter of boolean function and evaluates this boolean function for each element and retains those for which the function returns true.
 
 ![Alt Text](images/benchmark_architecture.png)
 
