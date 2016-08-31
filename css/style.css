@@ -294,7 +294,10 @@ ul.list-inline {
     color: #676767;
     line-height: 1.7rem;
 }
-
+.blog-section img {
+    max-width: 60%;
+    margin-left: 20%;
+}
 .blog-title-link:hover {
     text-decoration: none;
     color: #555;
@@ -364,6 +367,10 @@ ul.list-inline {
     }
     img {
         max-width: 100%;
+    }
+    .blog-section img {
+        max-width: 100%;
+        margin-left: 0;
     }
 }
 @media (min-width:1200px) {
