@@ -36,7 +36,7 @@ When dealing with skewed data, the compute node which count the word with larges
 
 
 #### AdvClick 
-Another typical type of stream use case is processing joins over two input streams. Theoretically unbounded memory is required to processing join over unbounded input streams, since every record in one in-finite stream must be compared with every record in the other. Since the memory of a machine is limited, we need restrict the number of records stored for each stream with a time window.
+Another typical type of stream use case is processing joins over two input streams. Theoretically unbounded memory is required to processing join over unbounded input streams, since every record in one in-finite stream must be compared with every record in the other. As the memory of a machine is limited, we need restrict the number of records stored for each stream with a time window.
 
 A window join takes two key-value pair streams, say stream *S1* and stream *S2*, along with windows with the same slide size for both *S1* and *S2* as input. Each record in *S1* is a tuple of pair ```(k, v1)``` with k as the primary key. The key in Stream *S2*:```(k, v2)``` is a foreign key referencing primary key in *S1*. The output of join operator is a stream of tuple ```(k, v1, v2)```. This primary key join operation could be described as a SQL query illustrated as following algorithm.
 
@@ -64,15 +64,16 @@ Since Spark Streaming doesn’t process tuples in a stream one by one, the join 
 
 #### K-Means
 
-Iterative algorithms occur in many domains of data analysis, such as ma- chine learning or graph analysis. Many stream data processing tasks require iterative sub-computations as well. These require a data processing sys- tem having the capacity to perform iterative processing on a real-time data stream. To achieve iterative sub-computations, low-latency interactive ac- cess to results and consistent intermediate outputs, Murray et al. introduced a computational model named timely dataflow that is based on a directed graph in which stateful vertices send and receive logically timestamped mes- sages along directed edges [33]. The dataflow graph may contain nested cycles and the timestamps reflect this structure in order to distinguish data that arise in di↵erent input epochs and loop iterations. With iterate opera- tor, many stream processing systems already support such nested cycles in processing data flow graph. We designed a workload named stream k-means to evaluate iterate operator in stream processing systems.
-K-means is a clustering algorithm which aims to partition n points into k clusters in which each point belongs to the cluster with the nearest mean, serving as a prototype of the cluster[3]. Given an initial set of k means, the algorithm proceeds by alternating between two steps[30]:
+Iterative algorithms occur in many domains of data analysis, such as machine learning or graph analysis. Many stream data processing tasks require iterative sub-computations as well. These require a data processing system having the capacity to perform iterative processing on a real-time data stream. To achieve iterative sub-computations, low-latency interactive access to results and consistent intermediate outputs, Murray introduced a computational model named timely dataflow that is based on a directed graph in which stateful vertices send and receive logically timestamped messages along directed edges. The dataflow graph may contain nested cycles and the timestamps reflect this structure in order to distinguish data that arise in different input epochs and loop iterations. With iterate operator, many stream processing systems already support such nested cycles in processing data flow graph. We designed a workload named stream k-means to evaluate iterate operator in stream processing systems.
 
-Assignment step: assign each point to the cluster whose mean yields the least within-cluster sum of squares.
-Update step: Calculate the new means to be the centroids of the points in the new clusters.
-The algorithm has converged when the assignments no longer change. We apply k-means algorithm on a stream of points with an iterate operator to update centroids.
+K-means is a clustering algorithm which aims to partition n points into k clusters in which each point belongs to the cluster with the nearest mean, serving as a prototype of the cluster. Given an initial set of k means, the algorithm proceeds by alternating between two steps:
 
-Compared to clustering for data set, the clustering problem for the data stream domain is di cult because of two issues that are hard to address: (1) The quality of the clusters is poor when the data evolves considerably over time. (2) A data stream clustering algorithm requires much greater functionality in discovering and exploring clusters over di↵erent portions of the stream[4]. Considering the main purpose of this workload is to evaluate iterative loop in stream data processing, we don’t try to solve these issues here. Similarly, stream k-means also has two steps: assignment and update. The di↵erence is each point in the stream only passes the application once and the application doesn’t try to bu↵er points. As shown in Figure 4.6, once a new centroid calculated, it will be broadcasted to assignment executors.
-Spark executes data analysis pipeline using directed acyclic graph sched- uler. Nested cycle doesn’t exist in the data pipeline graph. Therefore, this workload will not be used to benchmark Spark Streaming. Instead, a stan- dalone version of k-means application is used to evaluate the performance of Spark Streaming.
+*	Assignment step: assign each point to the cluster whose mean yields the least within-cluster sum of squares.
+*	Update step: Calculate the new means to be the centroids of the points in the new clusters.  
+
+![Alt Text](images/stream-bench/iterator_operator.png)
+
+The algorithm has converged when the assignments no longer change. We apply k-means algorithm on a stream of points with an iterate operator to update centroids. Spark executes data analysis pipeline using directed acyclic graph sched- uler. Nested cycle doesn’t exist in the data pipeline graph. Therefore, this workload will not be used to benchmark Spark Streaming. Instead, a standalone version of k-means application is used to evaluate the performance of Spark Streaming.
 
 
 ### Experiment Environment Setup
