@@ -17,5 +17,11 @@
     "createTime": "2016-08-27",
     "tags": ["react", "unit test"],
     "abstract": "A React App is consisted of components. A React component might contains multi sub-components. A well designed component should be reusable and stable. To achieve this, unit test is a necessity. In this article, I will introduce the method of unit test we used in our production development."
+  }, {
+    "blogId": "firefox",
+    "title": "Firefox with Kiosk Mode",
+    "createTime": "2016-10-19",
+    "tags": ["firefox", "add-ons"],
+    "abstract": "In some case, application is running in a brower with kiosk mode. In this article, we will introduce how to install Firefox with add-ons(R-kiosk and firebug with consoleexport) automaticlly without any manually action."
   }
 ]
