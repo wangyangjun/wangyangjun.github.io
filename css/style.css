@@ -236,7 +236,7 @@ ul.list-inline {
     height: 3.3rem;
     float: right;
     display: block;
-    padding: 1.2rem 0 0.66rem 0;
+    padding-top: 1.1rem;
 }
 .company-logo img {
     height: 100%;
