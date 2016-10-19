@@ -77,6 +77,7 @@ The algorithm has converged when the assignments no longer change. We apply k-me
 
 
 ### Experiment Environment Setup
+#### Hardware and Software
 The experiment environment consists of two clusters: compute clusting and Kafka cluster.
 *   computing cluster -- 9 nodes (8 worknodes, 1 mastnode)
 *   kafka cluster -- 5 brokers(one zokeeper instance running in one of them)
@@ -94,9 +95,43 @@ Selected software packages used in the experiments:
 *	Kafka 0.8.2.1
 *	Hadoop2.6(HDFS to enable checkpoint feature of Spark)
 
+#### Setup script
 To deploy these software in compute cluster and kafka cluster automatically, we developed a set of python script. The prerequisites of using these scripts include internet access, ssh passwordless login between nodes in cluster and cluster configuration that describes which nodes are compute node or kafka node and where is the master node. The basic logic of deploy scripts is to download softwares online and install them, then replace configure files which are contained in a Github repository. For detail information of how to use cluster deploy scripts and configure of Storm, Flink, Spark and Kafka, please check this [Github repository](https://github.com/wangyangjun/StreamBench/tree/master/script).
 
 
 ### Environment Results
+
+#### Logging and Statics
+There are two performance measurement terms used in StreamBench that are latency and throughput. Latency is the required time from a record entering the system to some results produced after some actions performed on the record. In StreamBench, messaging system and stream processing system are combined together and treated as one single system. The latency is computed start from when a record is generated. The following figure shows how latency computed in StreamBench. In our experiments, we noticed that in the beginning of processing data, the performance of Storm cluster is bad. That leads to high latency of records in the head of a stream. Therefore, we ignored latency logs of first 1 minute in our statistic.
+![Alt Text](images/stream-bench/latency.png)  
+
+Throughput is the number of actions executed or results produced per unit of time. In the WordCount workload, throughput is computed as the number of words counted per seconds in the whole compute cluster. Joined click events and the number of points processed per second are the throughput of workloads AdvClick and Stream KMeans respectively.
+There is an inherent tradeoff between latency and throughput: on a given hardware setup, as the amount of load increases by increase the speed of data generation, the latency of individual records increases as well since there is more contention for disk, CPU, network, and so on. Computing latency start from records generated makes it easy to measure the highest throughput, since records couldn’t produced in time will stay in kafka topics that increase latency dramatically. A stream processing system with better performance will achieve low latency and high throughput with fewer servers.
+
+#### WordCount Results
+To achieve the best throughput of Flink and Storm running this workload, we did some experiments called Offline WordCount. In these experiments, first we generated enough data deisgned for this workload and wrote it to kafka topic, then launched Storm/Flink work count application. The experiment results indicate that Flink achieves significant higher throughput that Storm. The throughput of Flink cluster dealing with uniform data stream is very high and reaches 2.83 M/s(million words per second), which is more than two times as large as throughput of performing skewed data. While the throughput of storm processing uniform data stream is only around 27 K/s.   
+Since the computing model of Spark Streaming is micro-batch processing, existing data in Kafka cluster would be collected and processed as one single batch. The performance of processing one large batch with Spark Streaming is similar to a Spark batch job. There are already many works evaluating performance of Spark batch processing. Therefore, we skip experiments of Spark Streaming here.  
+
+
+The following figure shows the latecny of these thress systems performing skewed data. Storm with ack enabled achieves a median latency of 10 milliseconds, and a 95-th percentile latency of 201 milliseconds, meaning that 95% of all latencies were below 201 milliseconds. Flink has a higher median latency (39 milliseconds), and a similar 95-th percentile latency of 217 milliseconds. Since the records in a micro-batch are buffered up to batch interval time, the buffer time are also counted into the latency according to our latency computational method. For example, median latency of Spark Streaming is equal to the sum of median latency of micro-batches and half of micro-batch interval. Obviously, the latency of Spark Streaming is much higher than that of others.  
+![Alt Text](images/stream-bench/latency_skewedwordcount.png)  
+
+In Spark Streaming, depending on the nature of the streaming computation, the batch interval used may have significant impact on the data rates that can be sustained by the application on a fixed set of cluster resources1. Here, we perform the experiments with one second micro-batch interval and 10 seconds checkpoint interval which are the default configurations. Checkpointing is enabled because of a stateful transformation, ```updateStateByKey``` is used here to accumulate word counts. Checkpointing is very time consuming due to writing information to a faulttolerant storage system.
+Before the computation of a micro-batch is finished, computation job of following micro-batches will not start. Therefore, the start time of computation job of a micro-batch would be delayed, this is indicated by “Delay” in the figure. The throughput of Spark Streming experiments is 1.4M/s (million words per second) of skewed data. When the speed of data generation reaches 1.8M/s, the delay and latency increase infinitely with periodic decreasing.
+
+![Alt Text](images/stream-bench/spark_wordcount_latency.png)  
+
+#### AdvClick Results
+As described in § 4.4.2, click delays of clicked advertisements satisfy normal distribution and the mean is set to 10 seconds. In our experiments, we define that clicks within 20s after corresponding advertisement shown are valid clicks. In theory, overwhelming majority records in the click stream could be joined. Kafka only provides a total order over messages within a partition, not between di↵erent partitions in a topic [17]. Therefore, it is possible that click record arrives earlier than corresponding advertisement shown record. We set a window time of 5 seconds for advertisement clicks stream, as acking a tuple would require knowing whether it will be joined with a corresponding one from the other stream in the future.
+When benchmarking Storm and Flink, first we perform experiments with low speed data generation, and then increase the speed until obvious joining failures occur when throughput is much less than generation speed of stream advertisement clicks. The experiment result shows that the maximum throughput of Storm cluster is around 8.4K/s (joined events per second). The corresponding generation speed of shown advertisements is 28K/s. As we can see in Figure 5.5(a), cluster throughput of shown advertisements is equal to the data generation speed when it is less than 28K/s. That means there is no join failures. Figure 5.5(a) also shows that Storm cluster has a very low median latency. But the 99-th percentile of latency is much higher and increase dramatically with the data generation speed.
+
+Compared to Storm, Flink achieves a much better throughput. In our experiments, the throughput of Flink cluster is always equal to the generation speed of stream shown advertisements. But when the generation speed of stream shown advertisements is larger than 200K/s, the Flink AdvClick processing job is usually failed because of a bug in flink-connector-kafka 3. This issue is fixed in the latest versions of Flink and Kafka. But Storm and Spark don’t support the latest version of Kafka yet. We will upgrade all these systems in StreamBench in the next version of StreamBench. The maximum throughput of Flink we achieved in experiments is 63K/s (joined events per second), around 6 times larger than Storm. The latency of Flink performing this workload is shown as Figure 5.5(b). Even though the median latencies are a little higher than Storm, but 90-th and 99-th percentiles of Flink latency are much lower.
+
+As discussed in § 4.3.2, Spark Streaming join operator is applied with sliding window. With the configuration of 20s/5s, the slide intervals of both windows are 5 seconds. That means a micro-batch join job is submitted to Spark Streaming cluster every 5 seconds. Because of di↵erent processing model, there is no joining failure in Spark Streaming. But high data genera- tion speed leads to increasing delay of micro-batch jobs, because micro-batch jobs couldn’t be finished in interval time. With this configuration, Spark Streaming has a very small throughput which is lower than 2K/s. Increas- ing micro-batch jobs submitting interval might increase the throughput, but leads to higher latency. For this workload, increasing the window lengths also because of the presence of duplicate records, as the windows overlap. Therefore, we did some experiments with larger windows. Increasing win- dows length of these two streams to 60s/30s, the cluster could achieve a throughput of 20K/s which is ten times larger.
+
+Table 5.2 summarizes maximum throughputs and latencies at a specific throughput of these systems. Flink achieves the largest throughput and lowest 90-th percentile latency. While the median latency of Storm is 14ms, that is much lower than other systems. Latencies of Spark Streaming shown in the table is the latencies of micro-batches that doesn’t include bu↵er time of records in a window.
+![Alt Text](images/stream-bench/adv_click_table.png)  
+
+
 
 

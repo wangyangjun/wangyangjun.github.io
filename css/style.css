@@ -298,6 +298,15 @@ ul.list-inline {
     max-width: 60%;
     margin-left: 20%;
 }
+.blog-section table {
+    margin-left: 15%;
+    min-width: 60%;
+    max-width: 80%;
+    border-collapse: collapse;
+}
+.blog-section table, th, td {
+    border: 1px solid black;
+}
 .blog-title-link:hover {
     text-decoration: none;
     color: #555;
