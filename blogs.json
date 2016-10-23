@@ -23,5 +23,11 @@
     "createTime": "2016-10-19",
     "tags": ["firefox", "add-ons"],
     "abstract": "In some case, application is running in a brower with kiosk mode. In this article, we will introduce how to install Firefox with add-ons(R-kiosk and firebug with consoleexport) automaticlly without any manually action."
+  }, {
+    "blogId": "after-master-graduate",
+    "title": "Title：从硕士毕业到家庭主妇",
+    "createTime": "2016-10-23",
+    "tags": ["芬兰", "硕士"],
+    "abstract": "有相当多的人因为跟芬兰人生了孩子，这辈子无法离开芬兰，最后只能做个实际上的家庭主妇，偶尔被Kela要求就去做做职业培训，并没有职业路线。做家庭主妇没有什么不好的，关键是孩子好就行，这是共识。"
   }
 ]
